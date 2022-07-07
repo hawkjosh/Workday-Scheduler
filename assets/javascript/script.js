@@ -23,3 +23,12 @@ for (i=0; i<hour.length; i++) {
     timeBlock[i].classList.add('past');
   }
 }
+
+// TODO → Seems to be saving but info disappears when page is refreshed...need to fix!
+// Function to store time-block text input when user hits save button
+function saveInput() {
+  for (i=0; i<hour.length; i++) {
+    localStorage.setItem('schedText', timeBlock[i].value);
+    timeBlock[i].innerHTML = localStorage.getItem('schedText');
+  }
+}

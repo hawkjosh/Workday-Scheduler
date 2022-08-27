@@ -12,7 +12,7 @@ for (i=0; i<hour.length; i++) {
   hour[i].innerHTML = moment(i+9, 'h').format('h A');
 }
 
-let currentTime = moment('13:23', 'hh:mm');
+let currentTime = moment();
 
 // Conditional to color code time-blocks based on relationship to current time
 for (i=0; i<hour.length; i++) {

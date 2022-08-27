@@ -12,7 +12,7 @@ for (i=0; i<hour.length; i++) {
   hour[i].innerHTML = moment(i+9, 'h').format('h A');
 }
 
-let currentTime = moment();
+let currentTime = moment('13:23', 'hh:mm');
 
 // Conditional to color code time-blocks based on relationship to current time
 for (i=0; i<hour.length; i++) {
@@ -28,46 +28,55 @@ for (i=0; i<hour.length; i++) {
 // Function to save text input for 9am timeBlock to local storage
 function storeInput1() {
   localStorage.setItem('hr9Input', JSON.stringify(timeBlock[0].value));
+  document.getElementById('hr9btn').textContent = "✅";
 }
 
 // Function to save text input for 10am timeBlock to local storage
 function storeInput2() {
   localStorage.setItem('hr10Input', JSON.stringify(timeBlock[1].value));
+  document.getElementById('hr10btn').textContent = "✅";
 }
 
 // Function to save text input for 11am timeBlock to local storage
 function storeInput3() {
   localStorage.setItem('hr11Input', JSON.stringify(timeBlock[2].value));
+  document.getElementById('hr11btn').textContent = "✅";
 }
 
 // Function to save text input for 12pm timeBlock to local storage
 function storeInput4() {
   localStorage.setItem('hr12Input', JSON.stringify(timeBlock[3].value));
+  document.getElementById('hr12btn').textContent = "✅";
 }
 
 // Function to save text input for 1pm timeBlock to local storage
 function storeInput5() {
   localStorage.setItem('hr1Input', JSON.stringify(timeBlock[4].value));
+  document.getElementById('hr1btn').textContent = "✅";
 }
 
 // Function to save text input for 2pm timeBlock to local storage
 function storeInput6() {
   localStorage.setItem('hr2Input', JSON.stringify(timeBlock[5].value));
+  document.getElementById('hr2btn').textContent = "✅";
 }
 
 // Function to save text input for 3pm timeBlock to local storage
 function storeInput7() {
   localStorage.setItem('hr3Input', JSON.stringify(timeBlock[6].value));
+  document.getElementById('hr3btn').textContent = "✅";
 }
 
 // Function to save text input for 4pm timeBlock to local storage
 function storeInput8() {
   localStorage.setItem('hr4Input', JSON.stringify(timeBlock[7].value));
+  document.getElementById('hr4btn').textContent = "✅";
 }
 
 // Function to save text input for 5pm timeBlock to local storage
 function storeInput9() {
   localStorage.setItem('hr5Input', JSON.stringify(timeBlock[8].value));
+  document.getElementById('hr5btn').textContent = "✅";
 }
 
 // Function to display text input for 9am timeBlock from local storage

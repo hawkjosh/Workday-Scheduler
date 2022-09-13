@@ -1,4 +1,4 @@
-# module5-work-scheduler-challenge
+# Workday-Scheduler
 
 ## Description
 
@@ -10,4 +10,4 @@ In this challenge, I updated the provided source code to meet all acceptance cri
 
 ## Link
 
-To view the deployed website, [CLICK HERE](https://hawkjosh.github.io/module5-work-scheduler-challenge/).
+To view the deployed website, [CLICK HERE](https://hawkjosh.github.io/Workday-Scheduler/).

@@ -1,10 +1,7 @@
-/* Added display:flex and flex-direction:column */
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 textarea {
@@ -28,66 +25,57 @@ textarea {
   white-space: pre-wrap;
 }
 
-/* Changed to text-align:left, border-top-left-radius:15px, and border-bottom-left-radius:15px  || added width:85% and padding-left:10px */
 .time-block {
-  text-align: left;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  width:85%;
-  padding-left: 10px;
-  color:#000000;
-  font-weight: bold;
+  text-align: center;
+  border-radius: 15px;
 }
 
-/* Added display:flex, flex-direction:row, and justify-content:flex-start */
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 }
 
-/* Added width:7.5% and padding:10px|0|0|5px */
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-  width: 7.5%;
-  padding: 10px 0 0 5px;
 }
 
 .past {
   background-color: #d3d3d3;
-  color: red;
-  text-decoration: line-through;
-  font-weight: lighter;
+  color: white;
 }
 
 .present {
   background-color: #ff6961;
-  color: black;
+  color: white;
 }
 
 .future {
   background-color: #77dd77;
   color: white;
-  font-weight: normal;
 }
 
-/* Added width:7.5% */
-.save-btn {
+.saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
-  width: 7.5%;
-  font-size: 2rem;
 }
 
-.save-btn i:hover {
+.saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+.notification {
+  display: none;
+  padding-bottom: 10px;
+  color: black;
+}
+
+.show {
+  display: block;
 }

@@ -1,162 +1,60 @@
-// Added current date display in
-let date = moment().format('dddd, MMMM Do');
-$('#currentDay').text(date);
+$(document).ready(function () {
+  // listen for save button clicks
+  $('.saveBtn').on('click', function () {
+    // get nearby values
+    var value = $(this).siblings('.description').val();
+    var time = $(this).parent().attr('id');
 
-let hour = document.querySelectorAll('.hour');
-let timeBlock = document.querySelectorAll('.time-block');
-let saveBtn = document.querySelectorAll('.save-btn');
+    // save in localStorage
+    localStorage.setItem(time, value);
 
-// Set number value to each hour in schedule, and display on HTML
-for (i=0; i<hour.length; i++) {
-  hour[i].value = moment(i+9, 'h').hour();
-  hour[i].innerHTML = moment(i+9, 'h').format('h A');
-}
+    // Show notification that item was saved to localStorage by adding class 'show'
+    $('.notification').addClass('show');
 
-let currentTime = moment();
+    // Timeout to remove 'show' class after 5 seconds
+    setTimeout(function () {
+      $('.notification').removeClass('show');
+    }, 5000);
+  });
 
-// Conditional to color code time-blocks based on relationship to current time
-for (i=0; i<hour.length; i++) {
-  if (hour[i].value > currentTime.hour()) {
-    timeBlock[i].classList.add('future');
-  } else if (hour[i].value == currentTime.hour()) {
-    timeBlock[i].classList.add('present');
-  } else {
-    timeBlock[i].classList.add('past');
+  function hourUpdater() {
+    // get current number of hours
+    var currentHour = moment().hours();
+
+    // loop over time blocks
+    $('.time-block').each(function () {
+      var blockHour = parseInt($(this).attr('id').split('-')[1]);
+
+      // check if we've moved past this time
+      if (blockHour < currentHour) {
+        $(this).addClass('past');
+      } else if (blockHour === currentHour) {
+        $(this).removeClass('past');
+        $(this).addClass('present');
+      } else {
+        $(this).removeClass('past');
+        $(this).removeClass('present');
+        $(this).addClass('future');
+      }
+    });
   }
-}
 
-// Function to save text input for 9am timeBlock to local storage
-function storeInput1() {
-  localStorage.setItem('hr9Input', JSON.stringify(timeBlock[0].value));
-  document.getElementById('hr9btn').textContent = "✅";
-}
+  hourUpdater();
 
-// Function to save text input for 10am timeBlock to local storage
-function storeInput2() {
-  localStorage.setItem('hr10Input', JSON.stringify(timeBlock[1].value));
-  document.getElementById('hr10btn').textContent = "✅";
-}
+  // set up interval to check if current time needs to be updated
+  var interval = setInterval(hourUpdater, 15000);
 
-// Function to save text input for 11am timeBlock to local storage
-function storeInput3() {
-  localStorage.setItem('hr11Input', JSON.stringify(timeBlock[2].value));
-  document.getElementById('hr11btn').textContent = "✅";
-}
+  // load any saved data from localStorage
+  $('#hour-9 .description').val(localStorage.getItem('hour-9'));
+  $('#hour-10 .description').val(localStorage.getItem('hour-10'));
+  $('#hour-11 .description').val(localStorage.getItem('hour-11'));
+  $('#hour-12 .description').val(localStorage.getItem('hour-12'));
+  $('#hour-13 .description').val(localStorage.getItem('hour-13'));
+  $('#hour-14 .description').val(localStorage.getItem('hour-14'));
+  $('#hour-15 .description').val(localStorage.getItem('hour-15'));
+  $('#hour-16 .description').val(localStorage.getItem('hour-16'));
+  $('#hour-17 .description').val(localStorage.getItem('hour-17'));
 
-// Function to save text input for 12pm timeBlock to local storage
-function storeInput4() {
-  localStorage.setItem('hr12Input', JSON.stringify(timeBlock[3].value));
-  document.getElementById('hr12btn').textContent = "✅";
-}
-
-// Function to save text input for 1pm timeBlock to local storage
-function storeInput5() {
-  localStorage.setItem('hr1Input', JSON.stringify(timeBlock[4].value));
-  document.getElementById('hr1btn').textContent = "✅";
-}
-
-// Function to save text input for 2pm timeBlock to local storage
-function storeInput6() {
-  localStorage.setItem('hr2Input', JSON.stringify(timeBlock[5].value));
-  document.getElementById('hr2btn').textContent = "✅";
-}
-
-// Function to save text input for 3pm timeBlock to local storage
-function storeInput7() {
-  localStorage.setItem('hr3Input', JSON.stringify(timeBlock[6].value));
-  document.getElementById('hr3btn').textContent = "✅";
-}
-
-// Function to save text input for 4pm timeBlock to local storage
-function storeInput8() {
-  localStorage.setItem('hr4Input', JSON.stringify(timeBlock[7].value));
-  document.getElementById('hr4btn').textContent = "✅";
-}
-
-// Function to save text input for 5pm timeBlock to local storage
-function storeInput9() {
-  localStorage.setItem('hr5Input', JSON.stringify(timeBlock[8].value));
-  document.getElementById('hr5btn').textContent = "✅";
-}
-
-// Function to display text input for 9am timeBlock from local storage
-function writeInput1() {
-  let hr9Display = JSON.parse(localStorage.getItem('hr9Input'));
-  if (hr9Display !== null) {
-    timeBlock[0].value = hr9Display;
-  }
-}
-
-// Function to display text input for 10am timeBlock from local storage
-function writeInput2() {
-  let hr10Display = JSON.parse(localStorage.getItem('hr10Input'));
-  if (hr10Display !== null) {
-    timeBlock[1].value = hr10Display;
-  }
-}
-
-// Function to display text input for 11am timeBlock from local storage
-function writeInput3() {
-  let hr11Display = JSON.parse(localStorage.getItem('hr11Input'));
-  if (hr11Display !== null) {
-    timeBlock[2].value = hr11Display;
-  }
-}
-
-// Function to display text input for 12pm timeBlock from local storage
-function writeInput4() {
-  let hr12Display = JSON.parse(localStorage.getItem('hr12Input'));
-  if (hr12Display !== null) {
-    timeBlock[3].value = hr12Display;
-  }
-}
-
-// Function to display text input for 1pm timeBlock from local storage
-function writeInput5() {
-  let hr1Display = JSON.parse(localStorage.getItem('hr1Input'));
-  if (hr1Display !== null) {
-    timeBlock[4].value = hr1Display;
-  }
-}
-
-// Function to display text input for 2pm timeBlock from local storage
-function writeInput6() {
-  let hr2Display = JSON.parse(localStorage.getItem('hr2Input'));
-  if (hr2Display !== null) {
-    timeBlock[5].value = hr2Display;
-  }
-}
-
-// Function to display text input for 3pm timeBlock from local storage
-function writeInput7() {
-  let hr3Display = JSON.parse(localStorage.getItem('hr3Input'));
-  if (hr3Display !== null) {
-    timeBlock[6].value = hr3Display;
-  }
-}
-
-// Function to display text input for 4pm timeBlock from local storage
-function writeInput8() {
-  let hr4Display = JSON.parse(localStorage.getItem('hr4Input'));
-  if (hr4Display !== null) {
-    timeBlock[7].value = hr4Display;
-  }
-}
-
-// Function to display text input for 5pm timeBlock from local storage
-function writeInput9() {
-  let hr5Display = JSON.parse(localStorage.getItem('hr5Input'));
-  if (hr5Display !== null) {
-    timeBlock[8].value = hr5Display;
-  }
-}
-
-writeInput1();
-writeInput2();
-writeInput3();
-writeInput4();
-writeInput5();
-writeInput6();
-writeInput7();
-writeInput8();
-writeInput9();
+  // display current day on page
+  $('#currentDay').text(moment().format('dddd, MMMM Do'));
+});
